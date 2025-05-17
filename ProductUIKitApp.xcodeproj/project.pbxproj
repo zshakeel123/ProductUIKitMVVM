@@ -21,6 +21,8 @@
 		B34E93C02DCA2F0F00E8B997 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34E93BF2DCA2F0F00E8B997 /* TestViewController.swift */; };
 		B3BD98112DD5FDA30010D884 /* ProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BD98102DD5FDA30010D884 /* ProductService.swift */; };
 		B3BD98142DD6007D0010D884 /* ProductListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BD98132DD6007D0010D884 /* ProductListViewModel.swift */; };
+		B3BD98902DD8B60B0010D884 /* products_response.json in Resources */ = {isa = PBXBuildFile; fileRef = B3BD988F2DD8B60B0010D884 /* products_response.json */; };
+		B3BD98922DD8B8650010D884 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BD98912DD8B8650010D884 /* AppConstants.swift */; };
 		DAEC810F39B0DCFC11F7827F /* libPods-ProductUIKitAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 686FC5977F88B80DF968A1AD /* libPods-ProductUIKitAppTests.a */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +59,8 @@
 		B3BD98192DD61D930010D884 /* ProductUIKitAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProductUIKitAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3BD98242DD624CD0010D884 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3BD982F2DD721930010D884 /* Pods_ProductUIKitApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_ProductUIKitApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3BD988F2DD8B60B0010D884 /* products_response.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = products_response.json; sourceTree = "<group>"; };
+		B3BD98912DD8B8650010D884 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		DA3E760A3E180F2577A8C3E9 /* Pods-ProductUIKitApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProductUIKitApp.release.xcconfig"; path = "Target Support Files/Pods-ProductUIKitApp/Pods-ProductUIKitApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,9 +138,10 @@
 		B34E93AD2DC8FC1500E8B997 /* ProductUIKitApp */ = {
 			isa = PBXGroup;
 			children = (
+				B3BD988E2DD8B5D10010D884 /* MockResponses */,
 				B3BD98122DD600680010D884 /* ViewModels */,
 				B3BD980F2DD5FD890010D884 /* Services */,
-				B34E93B62DC9039F00E8B997 /* DataModels */,
+				B34E93B62DC9039F00E8B997 /* Models */,
 				B34E93B52DC9038200E8B997 /* Controllers */,
 				B34E93A42DC8FC1500E8B997 /* AppDelegate.swift */,
 				B34E93A52DC8FC1500E8B997 /* Assets.xcassets */,
@@ -145,6 +150,7 @@
 				B34E93AA2DC8FC1500E8B997 /* Main.storyboard */,
 				B34E93AB2DC8FC1500E8B997 /* SceneDelegate.swift */,
 				B34E93AC2DC8FC1500E8B997 /* ViewController.swift */,
+				B3BD98912DD8B8650010D884 /* AppConstants.swift */,
 			);
 			path = ProductUIKitApp;
 			sourceTree = "<group>";
@@ -159,12 +165,12 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		B34E93B62DC9039F00E8B997 /* DataModels */ = {
+		B34E93B62DC9039F00E8B997 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				B34E93B72DC903B300E8B997 /* Product.swift */,
 			);
-			path = DataModels;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		B3BD980F2DD5FD890010D884 /* Services */ = {
@@ -181,6 +187,14 @@
 				B3BD98132DD6007D0010D884 /* ProductListViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B3BD988E2DD8B5D10010D884 /* MockResponses */ = {
+			isa = PBXGroup;
+			children = (
+				B3BD988F2DD8B60B0010D884 /* products_response.json */,
+			);
+			path = MockResponses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,6 +285,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3BD98902DD8B60B0010D884 /* products_response.json in Resources */,
 				B34E93B12DC8FC1500E8B997 /* Assets.xcassets in Resources */,
 				B34E93B32DC8FC1500E8B997 /* LaunchScreen.storyboard in Resources */,
 				B34E93B42DC8FC1500E8B997 /* Main.storyboard in Resources */,
@@ -389,6 +404,7 @@
 				B34E93BE2DCA103D00E8B997 /* ProductDetailsViewController.swift in Sources */,
 				B34E93AF2DC8FC1500E8B997 /* SceneDelegate.swift in Sources */,
 				B34E93B02DC8FC1500E8B997 /* ViewController.swift in Sources */,
+				B3BD98922DD8B8650010D884 /* AppConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
