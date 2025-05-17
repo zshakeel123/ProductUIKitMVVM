@@ -10,3 +10,10 @@ target 'ProductUIKitApp' do
   pod 'Kingfisher'
 
 end
+
+target 'ProductUIKitAppTests' do
+  inherit! :search_paths
+  pod 'Alamofire' # Add Alamofire here for your unit tests
+  # You might also want to add mocking libraries here, e.g.,
+  # pod 'OHHTTPStubs'
+end
