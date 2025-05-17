@@ -11,6 +11,7 @@ import Kingfisher
 class ProductDetailsViewController: UIViewController {
     
     var product: Product?
+    private var viewModel: ProductDetailsViewModel!
     
     @IBOutlet weak var productImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -19,23 +20,20 @@ class ProductDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-
         // Do any additional setup after loading the view.
+        guard let product = self.product else { return }
         
+        viewModel = ProductDetailsViewModel(product: product)
         configureViews()
     }
     
     func configureViews() {
-        guard let product = self.product else { return }
+        title = viewModel.title
+        titleLabel.text = viewModel.title
+        descriptionLabel.text = viewModel.description
+        priceLabel.text = "\(viewModel.price)"
         
-        title = product.title
-        titleLabel.text = product.title
-        descriptionLabel.text = product.description
-        priceLabel.text = "$\(product.price)"
-        
-        productImageView.kf.setImage(with: URL(string: product.thumbnail))
+        productImageView.kf.setImage(with: viewModel.thumbnailURL)
     }
     
 

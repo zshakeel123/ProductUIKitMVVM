@@ -8,14 +8,27 @@
 import UIKit
 import Alamofire
 
+// MARK: - Controller
 class ProductListViewController: UITableViewController {
     private var viewModel: ProductListViewModel!
     
+    private let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.hidesWhenStopped = true
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
+}
+
+// MARK: - Setup
+extension ProductListViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Products"
         viewModel = ProductListViewModel()
+        
+        setupActivityIndicator()
         
         viewModel.onError = { error in
             print("Error: \(error)")
@@ -24,6 +37,18 @@ class ProductListViewController: UITableViewController {
         viewModel.onProductsUpdated = { [weak self] in
             self?.tableView.reloadData()
         }
+        
+        viewModel.onLoadingStateChanged = { [weak self] isLoading in
+            DispatchQueue.main.async {
+                if isLoading {
+                    self?.activityIndicator.startAnimating()
+                    self?.tableView.isUserInteractionEnabled = false
+                } else {
+                    self?.activityIndicator.stopAnimating()
+                    self?.tableView.isUserInteractionEnabled = true
+                }
+            }
+        }
     
         //tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ProductCell")
         
@@ -31,12 +56,23 @@ class ProductListViewController: UITableViewController {
         viewModel.loadProducts()
     }
     
+    private func setupActivityIndicator() {
+        view.addSubview(activityIndicator)
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+}
+
+// MARK: - TableView methods & Scrolling
+extension ProductListViewController {
     override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         let scrollViewHeight = scrollView.frame.size.height
 
-        if offsetY > contentHeight - scrollViewHeight - 100 { // Adjust the threshold as needed
+        if offsetY > contentHeight - scrollViewHeight - 100 && !viewModel.isLoading { // Adjust the threshold as needed
             viewModel.loadMoreProducts()
         }
     }
@@ -63,25 +99,22 @@ class ProductListViewController: UITableViewController {
 //        tableView.deselectRow(at: indexPath, animated: true)
         
         let selectedProduct = viewModel.product(at: indexPath.row)
-            performSegue(withIdentifier: "PDSegue", sender: selectedProduct)
+        performSegue(withIdentifier: AppConstants.Segues.showProductDetailsSegueIdentifier, sender: selectedProduct)
             tableView.deselectRow(at: indexPath, animated: true)
     }
-    
-    
-    
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-        if segue.identifier == "PDSegue" {
-            if let detailsVC = segue.destination as? ProductDetailsViewController,
-               let selectedProduct = sender as? Product {
-                detailsVC.product = selectedProduct
-            }
-        }
-    }
-     
-    
+}
+
+// MARK: - Navigation
+extension  ProductListViewController {
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       // Get the new view controller using segue.destination.
+       // Pass the selected object to the new view controller.
+       if segue.identifier == AppConstants.Segues.showProductDetailsSegueIdentifier {
+           if let detailsVC = segue.destination as? ProductDetailsViewController,
+              let selectedProduct = sender as? Product {
+               detailsVC.product = selectedProduct
+           }
+       }
+   }
 }

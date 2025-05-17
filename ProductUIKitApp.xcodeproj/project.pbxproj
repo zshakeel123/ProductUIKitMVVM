@@ -23,6 +23,7 @@
 		B3BD98142DD6007D0010D884 /* ProductListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BD98132DD6007D0010D884 /* ProductListViewModel.swift */; };
 		B3BD98902DD8B60B0010D884 /* products_response.json in Resources */ = {isa = PBXBuildFile; fileRef = B3BD988F2DD8B60B0010D884 /* products_response.json */; };
 		B3BD98922DD8B8650010D884 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BD98912DD8B8650010D884 /* AppConstants.swift */; };
+		B3BD98942DD8CD4A0010D884 /* ProductDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BD98932DD8CD4A0010D884 /* ProductDetailsViewModel.swift */; };
 		DAEC810F39B0DCFC11F7827F /* libPods-ProductUIKitAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 686FC5977F88B80DF968A1AD /* libPods-ProductUIKitAppTests.a */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,7 @@
 		B3BD982F2DD721930010D884 /* Pods_ProductUIKitApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_ProductUIKitApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3BD988F2DD8B60B0010D884 /* products_response.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = products_response.json; sourceTree = "<group>"; };
 		B3BD98912DD8B8650010D884 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		B3BD98932DD8CD4A0010D884 /* ProductDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewModel.swift; sourceTree = "<group>"; };
 		DA3E760A3E180F2577A8C3E9 /* Pods-ProductUIKitApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProductUIKitApp.release.xcconfig"; path = "Target Support Files/Pods-ProductUIKitApp/Pods-ProductUIKitApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -185,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				B3BD98132DD6007D0010D884 /* ProductListViewModel.swift */,
+				B3BD98932DD8CD4A0010D884 /* ProductDetailsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				B34E93B82DC903B300E8B997 /* Product.swift in Sources */,
 				B34E93BC2DC9079B00E8B997 /* ProductListViewController.swift in Sources */,
 				B3BD98142DD6007D0010D884 /* ProductListViewModel.swift in Sources */,
+				B3BD98942DD8CD4A0010D884 /* ProductDetailsViewModel.swift in Sources */,
 				B34E93BE2DCA103D00E8B997 /* ProductDetailsViewController.swift in Sources */,
 				B34E93AF2DC8FC1500E8B997 /* SceneDelegate.swift in Sources */,
 				B34E93B02DC8FC1500E8B997 /* ViewController.swift in Sources */,

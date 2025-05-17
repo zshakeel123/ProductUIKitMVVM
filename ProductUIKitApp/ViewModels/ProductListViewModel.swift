@@ -13,10 +13,11 @@ class ProductListViewModel {
     private var products: [Product] = []
     private var currentPage = 0
     private let limit = 10
-    private var isLoading = false
+    private var _isLoading = false
     
     var onProductsUpdated: (() -> Void)?
     var onError: ((Error) -> Void)?
+    var onLoadingStateChanged: ((Bool) -> Void)?
     
     init(productService: IProductService = ProductService()) {
         self.productService = productService
@@ -26,15 +27,21 @@ class ProductListViewModel {
         return products
     }
     
+    var isLoading: Bool {
+        return _isLoading
+    }
+    
     func loadProducts() {
-        guard !isLoading else {return}
-        isLoading = true
+        guard !_isLoading else {return}
+        _isLoading = true
+        onLoadingStateChanged?(_isLoading)
         
         let skipValue = currentPage * limit
         
         productService.fetchProducts(skip: skipValue, limit: limit) { [weak self] result in
             guard let self = self else {return}
-            self.isLoading = false
+            self._isLoading = false
+            onLoadingStateChanged?(_isLoading)
             
             switch result {
             case .success(let productResponse):

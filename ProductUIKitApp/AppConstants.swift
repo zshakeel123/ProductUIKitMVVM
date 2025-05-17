@@ -23,6 +23,11 @@ enum AppConstants {
         static let animationDuration: TimeInterval = 0.3
     }
     
+    // MARK: - Segues
+    enum Segues {
+        static let showProductDetailsSegueIdentifier = "showProductDetailsSegue"
+    }
+    
     // MARK: - Other
     static let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "N/A"
     static let supportEmail = "support@yourapp.com"
