@@ -8,7 +8,7 @@
 import UIKit
 import Alamofire
 
-// MARK: - Controller
+// MARK: - Setup
 class ProductListViewController: UITableViewController {
     private var viewModel: ProductListViewModel!
     
@@ -18,38 +18,16 @@ class ProductListViewController: UITableViewController {
         indicator.translatesAutoresizingMaskIntoConstraints = false
         return indicator
     }()
-}
-
-// MARK: - Setup
-extension ProductListViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Products"
         viewModel = ProductListViewModel()
+        viewModel.output = self
         
         setupActivityIndicator()
-        
-        viewModel.onError = { error in
-            print("Error: \(error)")
-        }
-        
-        viewModel.onProductsUpdated = { [weak self] in
-            self?.tableView.reloadData()
-        }
-        
-        viewModel.onLoadingStateChanged = { [weak self] isLoading in
-            DispatchQueue.main.async {
-                if isLoading {
-                    self?.activityIndicator.startAnimating()
-                    self?.tableView.isUserInteractionEnabled = false
-                } else {
-                    self?.activityIndicator.stopAnimating()
-                    self?.tableView.isUserInteractionEnabled = true
-                }
-            }
-        }
-    
+            
         //tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ProductCell")
         
         // Do any additional setup after loading the view.
@@ -62,6 +40,36 @@ extension ProductListViewController {
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
+    }
+}
+
+// MARK: - ProductList ViewModel Output Consumption
+extension ProductListViewController: IProductListViewModelOutput {
+    func productListDidUpdate() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func productListDidEncounterError(with error: any Error) {
+        print("Error: \(error)")
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Error", message: "Something went wrong while fetching products.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alert, animated: true)
+        }
+    }
+    
+    func productListLoadingStateDidChange(isLoading: Bool) {
+        DispatchQueue.main.async {
+            if isLoading {
+                self.activityIndicator.startAnimating()
+                self.tableView.isUserInteractionEnabled = false
+            } else {
+                self.activityIndicator.stopAnimating()
+                self.tableView.isUserInteractionEnabled = true
+            }
+        }
     }
 }
 

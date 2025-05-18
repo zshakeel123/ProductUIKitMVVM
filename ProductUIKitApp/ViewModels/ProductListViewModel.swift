@@ -7,6 +7,11 @@
 
 import Foundation
 
+protocol IProductListViewModelOutput: AnyObject {
+    func productListDidUpdate()
+    func productListDidEncounterError(with error: Error)
+    func productListLoadingStateDidChange(isLoading: Bool)
+}
 
 class ProductListViewModel {
     private let productService: IProductService
@@ -15,12 +20,12 @@ class ProductListViewModel {
     private let limit = 10
     private var _isLoading = false
     
-    var onProductsUpdated: (() -> Void)?
-    var onError: ((Error) -> Void)?
-    var onLoadingStateChanged: ((Bool) -> Void)?
+    // MARK: - Output Delegate
+    weak var output: IProductListViewModelOutput?
     
-    init(productService: IProductService = ProductService()) {
+    init(productService: IProductService = ProductService(), output: IProductListViewModelOutput? = nil) {
         self.productService = productService
+        self.output = output
     }
     
     var displayedProducts: [Product] {
@@ -34,22 +39,23 @@ class ProductListViewModel {
     func loadProducts() {
         guard !_isLoading else {return}
         _isLoading = true
-        onLoadingStateChanged?(_isLoading)
+        output?.productListLoadingStateDidChange(isLoading: _isLoading)
         
         let skipValue = currentPage * limit
         
         productService.fetchProducts(skip: skipValue, limit: limit) { [weak self] result in
             guard let self = self else {return}
             self._isLoading = false
-            onLoadingStateChanged?(_isLoading)
+            self.output?.productListLoadingStateDidChange(isLoading: _isLoading)
             
             switch result {
             case .success(let productResponse):
                 self.products.append(contentsOf: productResponse.products)
                 self.currentPage += 1
-                self.onProductsUpdated?()
+                self.output?.productListDidUpdate()
+                
             case .failure(let error):
-                self.onError?(error)
+                self.output?.productListDidEncounterError(with: error)
             }
         }
     }
