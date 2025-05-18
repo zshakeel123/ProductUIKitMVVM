@@ -29,4 +29,23 @@ class ProductDetailsViewModel {
     var thumbnailURL: URL? {
         URL(string: product.thumbnail)
     }
+    
+    var brand: String {
+        "Brand: \(product.brand ?? "N/A")"
+    }
+    
+    var category: String {
+        "Category: \(product.category)"
+    }
+    
+    var stock: String {
+        "In Stock: \(product.stock)"
+    }
+    
+    var rating: String {
+        "Rating: \(String(format: "%.1f", product.rating)) / 5.0"
+    }
+    
+    
+    
 }
