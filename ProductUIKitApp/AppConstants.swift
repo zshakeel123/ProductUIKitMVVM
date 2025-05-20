@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 // MARK: - App Constants (Enum for name spacing)
 enum AppConstants {
@@ -26,6 +27,20 @@ enum AppConstants {
     // MARK: - Segues
     enum Segues {
         static let showProductDetailsSegueIdentifier = "showProductDetailsSegue"
+    }
+    
+    enum Color {
+        static let primary = UIColor(named: "PrimaryColor") ?? UIColor.systemBlue
+        static let secondary = UIColor(named: "SecondaryColor") ?? UIColor.secondaryLabel
+        static let accent = UIColor(named: "AccentColor") ?? UIColor.systemOrange
+        static let background = UIColor(named: "BackgroundColor") ?? UIColor.systemBackground
+        static let cellBackground = UIColor(named: "CellBackgroundColor") ?? UIColor.white
+    }
+    
+    enum Typography {
+        static let title = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        static let price = UIFont.systemFont(ofSize: 18, weight: .bold)
+        // Removed 'body' as description label is removed from cell
     }
     
     // MARK: - Other

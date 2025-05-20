@@ -27,7 +27,8 @@ class ProductListViewController: UITableViewController {
         viewModel.output = self
         
         setupActivityIndicator()
-            
+        
+        tableView.separatorStyle = .singleLine
         //tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ProductCell")
         
         // Do any additional setup after loading the view.
@@ -90,10 +91,12 @@ extension ProductListViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell  = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath)
+        guard let cell  = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath) as? ProductTableViewCell else {
+            fatalError("Failed to dequeue ProductCell")
+        }
+        
         if let product = viewModel.product(at: indexPath.row) {
-            cell.textLabel?.text = product.title
-            cell.detailTextLabel?.text = "\(product.price)"
+            cell.configure(with: product)
         }
         
         return cell
