@@ -2,6 +2,16 @@
 
 This project demonstrates a clean and strict Model-View-ViewModel (MVVM) architecture for a basic product listing application built using Swift and UIKit. It focuses on clear separation of concerns, testability, and maintainability.
 
+
+## Product Listing
+
+![Simulator Screenshot - iPhone 16 Pro - 2025-05-20 at 12 10 32](https://github.com/user-attachments/assets/68c37684-3041-495b-a96e-ad27bb626770)
+
+
+## Product Detail Screen
+
+![Simulator Screenshot - iPhone 16 Pro - 2025-05-20 at 12 10 51](https://github.com/user-attachments/assets/e43ba522-21f8-4bd2-b8b5-1f17cba531f0)
+
 ## Key Features
 
 * Displays a list of products fetched from a remote API.
@@ -48,29 +58,22 @@ Selecting the ProductUIKitAppTests target.
 Pressing Cmd + U or selecting "Product" -> "Test" from the Xcode menu.
 The tests cover various scenarios, including successful data loading, failure cases, and verifying the ViewModel's state updates.
 
-Getting Started
-Clone the repository:
-```
-git clone <repository_url>
-cd <repository_directory>
-```
-
 ## Project Structure
 ```
 ProductUIKitApp/
 ├── AppConstants.swift          # Defines UI constants (colors, typography, padding)
 ├── AppDelegate.swift
-├── Model/
+├── Models/
 │   ├── Product.swift
 │   └── ProductResponse.swift
 ├── Services/
 │   ├── IProductService.swift    # Protocol for the product service
 │   └── ProductService.swift     # Implementation of the product service
-├── View/
+├── Views/
 │   ├── ProductDetailsViewController.swift
 │   ├── ProductListViewController.swift
 │   └── ProductTableViewCell.swift # Custom cell for product listing
-├── ViewModel/
+├── ViewModels/
 │   ├── ProductListViewModelOutput.swift # Protocol for ViewModel output
 │   └── ProductListViewModel.swift
 ├── Assets.xcassets/
@@ -87,19 +90,19 @@ Podfile.lock
 ## Considerations for Potential Employers
 This project demonstrates:
 
-**Architectural Proficiency:** A strong understanding and implementation of the MVVM pattern for building scalable and maintainable iOS applications.
-**Clean Code Practices:** Adherence to clean coding principles with well-structured and commented code.
-**UI Development Skills:** Experience with UIKit, custom UITableViewCell creation, and basic UI styling.
-**Asynchronous Operations:** Handling of network requests and image loading asynchronously for a smooth user experience.
-**Dependency Management:** Familiarity with Cocoapods for managing project dependencies.
-**Testing:** Commitment to writing unit tests to ensure code quality and reliability.
-**Separation of Concerns:** Clear division of responsibilities between different components of the application.
-**Protocol-Oriented Programming:** Use of protocols (IProductService, ProductListViewModelOutput) to promote decoupling and testability.
-This project serves as a solid foundation and showcases my ability to develop well-structured and testable iOS applications following modern architectural patterns.
+**Architectural Proficiency:** A strong understanding and implementation of the MVVM pattern for building scalable and maintainable iOS applications.<br>
+**Clean Code Practices:** Adherence to clean coding principles with well-structured and commented code.<br>
+**UI Development Skills:** Experience with UIKit, custom UITableViewCell creation, and basic UI styling.<br>
+**Asynchronous Operations:** Handling of network requests and image loading asynchronously for a smooth user experience.<br>
+**Dependency Management:** Familiarity with Cocoapods for managing project dependencies.<br>
+**Testing:** Commitment to writing unit tests to ensure code quality and reliability.<br>
+**Separation of Concerns:** Clear division of responsibilities between different components of the application.<br>
+**Protocol-Oriented Programming:** Use of protocols (IProductService, ProductListViewModelOutput) to promote decoupling and testability.<br>
+This project serves as a solid foundation and showcases my ability to develop well-structured and testable iOS applications following modern architectural patterns.<br>
 
-Author
-[Zeeshan Shakeel]
-[https://www.linkedin.com/in/zeeshakeel/]
+## Author
+**Zeeshan Shakeel**<br>
+[https://www.linkedin.com/in/zeeshakeel/] 
 
 
 
